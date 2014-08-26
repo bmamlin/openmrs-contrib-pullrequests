@@ -1,0 +1,79 @@
+<!-- Status div used to show progress while loading -->
+<div ng-show="status" class="status">
+	{{status}}
+</div>
+
+<!-- Allow list to be filtered by string -->
+<div class="filter">
+	filter: <input id="filter" type="text" ng-model="filterText" />
+</div>
+
+<!-- Provide options for sorting the list -->
+<div class="sort-options">
+	sorting:
+	<a href="" ng-click="predicate='base.repo.name';reverse=!reverse">repo
+		<div class='up' ng-show="predicate=='base.repo.name' &amp;&amp; !reverse"></div>
+		<div class='down' ng-show="predicate=='base.repo.name' &amp;&amp; reverse"></div>
+	</a>
+	<a href="" ng-click="predicate='user.login';reverse=!reverse">user
+		<div class='up' ng-show="predicate=='user.login' &amp;&amp; !reverse"></div>
+		<div class='down' ng-show="predicate=='user.login' &amp;&amp; reverse"></div>
+	</a>
+	<a href="" ng-click="predicate='created_at';reverse=!reverse">created
+		<div class='up' ng-show="predicate=='created_at' &amp;&amp; !reverse"></div>
+		<div class='down' ng-show="predicate=='created_at' &amp;&amp; reverse"></div>
+	</a>
+	<a href="" ng-click="predicate='updated_at';reverse=!reverse">updated
+		<div class='up' ng-show="predicate=='updated_at' &amp;&amp; !reverse"></div>
+		<div class='down' ng-show="predicate=='updated_at' &amp;&amp; reverse"></div>
+	</a>
+	<a href="" ng-click="predicate='last_comment && last_comment.user.login == user.login ? last_comment.created_at : 0';reverse=true">unanswered</a>
+</div>
+
+<!-- Show stats about current list of pull requests -->
+<div class="dashboard">
+	{{(pulls | filter:filterText).length}} open pull requests,
+	average lifespan is {{averageLifespanInDays(pulls)}} days
+</div>
+
+<!-- Show list of pull requests -->
+<div class="pull" ng-repeat="pull in pulls | filter:filterText | orderBy:predicate:reverse">
+
+	<!-- Main content shows title, date updated, and description -->
+	<div class="pull-content">
+		<div class="pull-title">
+			<a href="{{pull.html_url}}" target="_blank">{{pull.title}}</a>
+		</div>
+		<div class="pull-diff">
+			(<a href="{{pull.html_url}}/files" target="_blank">diff</a>)
+		</div>
+		<div class="pull-updated">
+			Updated <span title="{{pull.updated_at | date:'yyyy-MMM-dd'}}">{{pull.days_since_updated}} days ago</span>
+		</div>
+		<div class="pull-body" ng-bind-html="pull.body">
+		</div>
+	</div>
+
+	<!-- Rightside gutter shows detail about the pull request -->
+	<div class="pull-gutter">
+		<div class="pull-repo">
+			<a href="{{pull.base.repo.html_url}}">{{pull.base.repo.name}}</a>
+		</div>
+		<div class="pull-user">
+			<a href="{{pull.user.html_url}}" target="_blank">{{pull.user.login}}</a>
+		</div>
+		<div class="pull-created">
+			Created <span title="{{pull.created_at | date:'yyyy-MMM-dd'}}">{{pull.days_since_created}} days ago</span>
+		</div>
+		<div class="pull-merged" ng-show="pull.merged_at">
+			Merged {{pull.merged_at | date:'yyyy-MMM-dd'}}
+		</div>
+		<div class="pull-comment" ng-show="pull.last_comment">
+			<a href="{{pull.last_comment.html_url}}" target="_blank"
+			   ng-class="{highlight: pull.last_comment.user.login == pull.user.login}">Last comment {{pull.last_comment.user.login}} ({{pull.last_comment.created_at | date:'yyyy-MMM-dd'}})</a>
+		</div>
+	</div>
+
+	<!-- Ensure height adjusts to floated divs -->
+	<div class="clear"></div>
+</div>

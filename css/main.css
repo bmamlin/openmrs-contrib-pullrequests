@@ -1,0 +1,158 @@
+body {
+	font-family: arial;
+}
+h1 {
+	font-size: 14pt;
+	text-align: center;
+	color: #808080;
+}
+.view {
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.status {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	width: 300px;
+	height: 20px;
+	border: solid thick black;
+	border-radius: 20px;
+	padding: 1em;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+	background-color: #e0e0e0;
+}
+.filter {
+	padding-bottom: 1em;
+	border-bottom: 1px solid #eee;
+}
+.filter input {
+	width: 20em;
+}
+.sort-options {
+	padding-top: 1em;
+	padding-bottom: 1em;
+	border-bottom: 1px solid #eee;
+}
+.sort-options a {
+	color: #808080;
+	text-decoration: none;
+	margin-right: 1em;
+}
+.dashboard {
+	padding-top: 1em;
+	padding-bottom: 1em;
+	border-bottom: 1px solid #eee;
+}
+.pull {
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	border-bottom: 1px solid #eee;
+}
+.pull-content {
+	float: left;
+	margin-right: 0.5em;
+	width: 65%;
+}
+.pull-gutter {
+	float: left;
+	width: 30%;
+}
+.clear {
+	clear: both;
+}
+.pull-title {
+	display: inline;
+}
+.pull-title a {
+	color: #4183c4;
+	text-decoration: none;
+	font-weight: bold;
+}
+.pull-diff {
+	display: inline;
+	color: #4183c4;
+}
+.pull-diff a {
+	color: #4183c4;
+	text-decoration: none;
+}
+.pull-updated {
+	margin-top: 1em;
+	font-size: 12px;
+	color: #808080;
+}
+.pull-body {
+	margin-top: 1em;
+	font-size: 10pt;
+	color: #c0c0c0;
+}
+.pull-body a {
+	color: #c0c0c0;
+}
+.pull-repo {
+}
+.pull-repo a {
+	color: #808080;
+	text-decoration: none;
+}
+.pull-user {
+}
+.pull-user a {
+	color: #808080;
+	text-decoration: none;
+}
+.pull-state {
+	font-size: 12px;
+	color: #808080;
+}
+.pull-created {
+	font-size: 12px;
+	color: #808080;
+}
+.pull-closed {
+	font-size: 12px;
+	color: #808080;
+}
+.pull-merged {
+	font-size: 12px;
+	color: #808080;
+}
+.pull-comment {
+	font-size: 12px;
+	color: #808080;
+}
+.pull-comment a {
+	color: #808080;
+	text-decoration: none;
+}
+.pull-comment-flag {
+	display: inline;
+}
+.pull-comment-flag:before {
+	color: red;
+	font-style: bold;
+	content: '*';
+}
+.highlight {
+	background-color: yellow;
+}
+.up {
+	display: inline;
+	color: gray;
+}
+.up:before {
+	content: ' \2191';
+}
+.down {
+	display: inline;
+	color: gray;
+}
+.down:before {
+	content: ' \2193';
+}
